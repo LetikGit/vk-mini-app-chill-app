@@ -1,0 +1,18 @@
+.sound-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+body .sound-img {
+    filter: invert(1);
+}
+
+body[scheme="bright_light"] .sound-img {
+    filter: invert(1);
+}
+
+body[scheme="space_gray"] .sound-img {
+    filter: none;
+}
