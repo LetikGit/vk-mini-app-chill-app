@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Button from '@vkontakte/vkui/dist/components/Button/Button';
+import Icon28Play from '@vkontakte/icons/dist/28/play';
+import Icon28Pause from '@vkontakte/icons/dist/28/pause';
+
 
 const useMultiAudio = (urls, volume) => {
   const [sources] = useState(
@@ -36,7 +39,7 @@ const useMultiAudio = (urls, volume) => {
 
   useEffect(() => {
     sources.forEach((source, i) => {
-      players[i].playing ? source.audio.play() : source.audio.pause()
+      players[i].playing && volume !== 0 ? source.audio.play() : source.audio.pause()
       source.audio.volume = volume
     })
   }, [sources, players, volume])
@@ -74,9 +77,9 @@ const MultiPlayer = ({ urls, volume }) => {
 }
 
 const Player = ({ player, toggle }) => (
-  <div>
-    <Button onClick={toggle} mode={player.playing ? 'destructive' : 'commerce'}>{player.playing ? 'Отключить' : 'Включить'}</Button>
-  </div>
+  <Button onClick={toggle} mode="tertiary">
+    {player.playing ? <Icon28Pause /> : <Icon28Play />}
+  </Button>
 )
 
 

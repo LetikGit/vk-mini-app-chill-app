@@ -31,11 +31,11 @@ const Home = ({ id }) => {
 		{
 			name: 'Птицы',
 			icon: 'bird',
-			sound: 'bird',
+			sound: 'birds',
 			initVolume: 0
 		},
 		{
-			name: '"Коричневый шум""',
+			name: '"Коричневый шум"',
 			icon: 'brownnoise',
 			sound: 'brownnoise',
 			initVolume: 0
@@ -43,13 +43,13 @@ const Home = ({ id }) => {
 		{
 			name: 'Мурлыканье кота',
 			icon: 'catpurr',
-			sound: 'catpurr',
+			sound: 'cat_purr',
 			initVolume: 0
 		},
 		{
 			name: 'Капли',
 			icon: 'drop',
-			sound: 'drop',
+			sound: 'drops',
 			initVolume: 0
 		},
 		{
@@ -101,9 +101,7 @@ const Home = ({ id }) => {
 	function controlVolume(mute) {
 		const soundMix = soundData.map((item, i) => (
 			{
-				name: item.name,
-				icon: item.icon,
-				sound: item.sound,
+				...item,
 				initVolume: Math.random() > 0.5 || mute ? 0 : Math.floor(Math.random() * Math.floor(100))
 			}
 		))
@@ -122,6 +120,7 @@ const Home = ({ id }) => {
 			{
 				soundData.map((item, index) => (
 					<SoundSelector
+						key={index.toString()}
 						name={item.name}
 						icon={item.icon}
 						sound={item.sound}
